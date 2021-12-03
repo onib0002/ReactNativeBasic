@@ -6,9 +6,8 @@ import {
   View,
   SafeAreaView,
   FlatList,
-  Pressable,
 } from 'react-native';
-//import { color } from 'react-native-reanimated';
+
 
 
 //TouchableOpacity
