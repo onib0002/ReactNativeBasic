@@ -5,12 +5,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './screen/Home';
 import List from './screen/List';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Pressable,
+} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-  
+    <SafeAreaView style={styles.container} edges={['right', 'bottom', 'left']}>
     <NavigationContainer>
       <Tab.Navigator
             initialRouteName= "Home"
@@ -30,6 +38,12 @@ export default function App() {
         <Tab.Screen name="List" component = {List} />
       </Tab.Navigator>
     </NavigationContainer>
+    </SafeAreaView>
     );
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
