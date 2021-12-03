@@ -9,12 +9,11 @@ import {
 } from 'react-native';
 
 
-
 //TouchableOpacity
 
 export default function App() {
    const baseURL = 'https://random-data-api.com/api/cannabis/random_cannabis?size=30'	
-  const [people, setPeople] = useState([]);
+  const [cannabis, setCannabis] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const getData = () => {
@@ -24,11 +23,11 @@ export default function App() {
         return resp.json();
       })
       .then((data) => {
-        console.log(data.results); //the array of people
+        console.log(data.results); 
         let results = data.map((item, index) => {
           return { ...item, key: index + 7 };
         });
-        setPeople(results);
+        setCannabis(results);
         setIsRefreshing(false);
       })
       .catch((err) => {
@@ -40,7 +39,6 @@ export default function App() {
   // const memoData = useCallback(getData, [page]);
 
   useEffect(() => {
-    // memoData('people');
     getData();
     }, []);
 
@@ -51,12 +49,12 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container} edges={['right', 'bottom', 'left']}>
       <FlatList
-        data={people}
+        data={cannabis}
         renderItem={(item) => <Cannabis cannabis={item} />}
         refreshing={isRefreshing}
         onRefresh={() => {
           setIsRefreshing(true);
-          memoData('people');
+          memoData('cannabis');
           console.log('Am refreshing');
         }}
         ListEmptyComponent={<Text>No Data. Such Sad.</Text>}
